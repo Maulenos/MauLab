@@ -1,0 +1,27 @@
+name: Documentation checks
+
+on:
+  push:
+    paths:
+      - "README.md"
+      - "docs/**"
+      - "scripts/check_docs.py"
+      - ".github/workflows/documentation.yml"
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/**"
+      - "scripts/check_docs.py"
+      - ".github/workflows/documentation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Verify documentation links and formatting
+        run: python3 scripts/check_docs.py
