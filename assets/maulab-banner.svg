@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+<title id="title">MauLab — Infrastructure in practice</title>
+<desc id="desc">Jose Sosa's engineering portfolio: Linux, containers, observability and automation.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0d1829"/><stop offset="1" stop-color="#152f40"/></linearGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#87b4c8" stroke-opacity=".07"/></pattern></defs>
+<rect width="1280" height="360" rx="16" fill="url(#bg)"/><rect width="1280" height="360" rx="16" fill="url(#grid)"/>
+<path d="M64 67h36" stroke="#63dbc1" stroke-width="4"/>
+<g font-family="Segoe UI, Arial, sans-serif"><text x="116" y="74" fill="#a4c2d0" font-size="16" letter-spacing="3">JOSE SOSA / ENGINEERING PORTFOLIO</text><text x="60" y="166" fill="#f1f7fc" font-size="76" font-weight="700" letter-spacing="-3">MauLab<tspan fill="#63dbc1">.</tspan></text><text x="64" y="215" fill="#d3e3ec" font-size="30">Infrastructure in practice.</text><text x="64" y="292" fill="#9fb9c9" font-size="18">LINUX   /   CONTAINERS   /   OBSERVABILITY   /   AUTOMATION</text></g>
+<g fill="none" stroke="#63dbc1" stroke-width="2"><path d="M890 119h110v123H890M1000 180h100" opacity=".45"/><rect x="810" y="90" width="150" height="58" rx="9" fill="#142b3c"/><rect x="810" y="213" width="150" height="58" rx="9" fill="#142b3c"/><rect x="1080" y="151" width="112" height="58" rx="9" fill="#142b3c"/><path d="M834 112h66m-66 13h44m-44 112h66m-66 13h44m210-76h43m-43 13h25" stroke="#9fb9c9"/></g><g fill="#63dbc1"><circle cx="936" cy="119" r="4"/><circle cx="936" cy="242" r="4"/><circle cx="1169" cy="180" r="4"/></g>
+</svg>

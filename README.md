@@ -1,122 +1,115 @@
+![MauLab — Infrastructure in practice. Jose Sosa's engineering portfolio.](assets/maulab-banner.svg)
+
 # MauLab
 
-**Self-hosted infrastructure · Linux systems · Observability · Automation**
+**A working homelab. An evolving engineering portfolio.**
 
 [![Documentation checks](https://github.com/Maulenos/MauLab/actions/workflows/documentation.yml/badge.svg)](https://github.com/Maulenos/MauLab/actions/workflows/documentation.yml)
-![Project status](https://img.shields.io/badge/status-active%20homelab-235a81)
-![Focus](https://img.shields.io/badge/focus-DevOps%20%26%20SRE-495867)
+[![Daily activity](https://github.com/Maulenos/MauLab/actions/workflows/daily-activity.yml/badge.svg)](https://github.com/Maulenos/MauLab/actions/workflows/daily-activity.yml)
+![Focus: DevOps and SRE](https://img.shields.io/badge/focus-DevOps_%26_SRE-163849?style=flat&labelColor=0d1829)
 
-**MauLab is my hands-on infrastructure engineering portfolio.** I use real, self-hosted systems to practice administering Linux, operating containerized services, monitoring infrastructure health, troubleshooting incidents, and automating repeatable maintenance.
+I’m **Jose Sosa**, a network operations professional building practical DevOps skills through self-hosted infrastructure. MauLab brings together Linux administration, containerized services, observability, and repeatable maintenance—backed by **6+ years in network operations and technical support**.
 
-The project connects **6+ years of professional network operations and technical support** with practical DevOps/SRE engineering. It is a personal learning environment—not a claim of commercial production-scale infrastructure.
+[Architecture](docs/architecture.md) · [Runbook](docs/operations.md) · [Case studies](docs/case-studies.md) · [Roadmap](docs/roadmap.md) · [LinkedIn](https://www.linkedin.com/in/jose-sosa-783b49ab/)
 
-**Explore:** [Architecture](docs/architecture.md) · [Operations runbook](docs/operations.md) · [Engineering case studies](docs/case-studies.md) · [Security approach](docs/security.md) · [Roadmap](docs/roadmap.md)
+## At a glance
 
----
-
-## Engineering highlights
-
-| Focus | What I implemented or practice | Technical evidence |
+| Platform | Operations | Engineering direction |
 | --- | --- | --- |
-| **Linux & systems** | Administer Ubuntu Server and Unraid systems, services, storage, and remote access | [Architecture & inventory](docs/architecture.md) |
-| **Containers** | Deploy and troubleshoot self-hosted services with Docker and Docker Compose | [Operations runbook](docs/operations.md) |
-| **Observability** | Collect and review host/service metrics with Prometheus and Grafana; troubleshoot monitoring availability | [Observability case study](docs/case-studies.md#case-study-2-monitoring-service-recovery) |
-| **Reliability & automation** | Schedule nightly systemd-based backups; apply 14-day retention, PostgreSQL dump validation, and SHA-256 integrity checks | [Backup case study](docs/case-studies.md#case-study-1-backup-automation-and-integrity) |
-| **Network operations** | Use SSH and Tailscale for remote administration and apply incident-triage practices learned in NOC roles | [Runbook](docs/operations.md) · [Security](docs/security.md) |
-| **Documentation & change discipline** | Document current vs. planned architecture, troubleshooting steps, and operational checks | [Architecture](docs/architecture.md) · [Roadmap](docs/roadmap.md) |
+| **Two complementary hosts** | **Observe, diagnose, validate** | **Make the work reproducible** |
+| Unraid for storage and workloads; Linux for monitoring and control experiments | Prometheus, Grafana, Docker Compose, SSH, and Tailscale | Sanitized configuration examples, restore evidence, and documented experiments |
 
-## Current infrastructure
-
-The diagram below intentionally omits private IP addresses, hostnames, and administrative endpoints.
-
-```mermaid
-flowchart TB
-    Internet["Internet"] --> Router["Existing household router"]
-    Router --> Switch["Existing 2.5 GbE switch"]
-    Switch --> Server["MauServer<br/>Unraid 7.3.2<br/>Storage / containers / VMs"]
-    Switch --> Envy["Mau Envy<br/>Linux monitoring / control"]
-    Switch --> Clients["Workstation and LAN clients"]
-    Remote["Authorized remote devices"] -. "Tailscale private access" .-> Server
-    Remote -. "Tailscale private access" .-> Envy
-```
-
-| System | Role | Current state |
-| --- | --- | --- |
-| **MauServer** | Primary Unraid host for storage, container workloads, and virtual machines | Operating |
-| **Mau Envy** | Repurposed Linux node for monitoring and local control-display experiments | Operating; interface evolving |
-| **Network** | Household router and 2.5 GbE switching connecting lab and clients | Operating |
-| **Remote administration** | SSH and Tailscale access for authorized devices | In use |
-| **DeskPi RackMate T2** | Physical mounting and future network-lab expansion | Owned / set up |
-
-See [architecture and infrastructure inventory](docs/architecture.md) for hardware details and the present limitations.
+This is a personal learning environment. Hardware and service descriptions reflect documented lab work; the repository is not a live health dashboard or a complete deployment export.
 
 ## Selected engineering work
 
-### 01 — Backup automation and integrity
+### 01 / Reliable backups
 
-Implemented a nightly **systemd-based maintenance workflow**, including rolling retention, PostgreSQL backup validation, and SHA-256 integrity checks. The focus is not merely creating files, but making backup output verifiable and maintenance repeatable.
+Nightly **systemd-based maintenance** with **14-day retention**, PostgreSQL dump validation, and SHA-256 integrity checks. The next milestone is an isolated restore exercise with recorded validation.
 
-[Read the engineering case study](docs/case-studies.md#case-study-1-backup-automation-and-integrity)
+[Explore the backup case study →](docs/case-studies.md#case-study-1-backup-automation-and-integrity)
 
-### 02 — Monitoring recovery and container troubleshooting
+### 02 / Monitoring and service recovery
 
-Used **Prometheus, Grafana, Docker Compose, and Linux service troubleshooting** to improve visibility into the lab and investigate monitoring availability problems, including port conflicts.
+Operate a **Prometheus and Grafana** monitoring stack and troubleshoot Docker Compose services, including port conflicts. A separate Linux node supports ongoing control-display experiments.
 
-[Read the engineering case study](docs/case-studies.md#case-study-2-monitoring-service-recovery)
+[Explore the monitoring case study →](docs/case-studies.md#case-study-2-monitoring-service-recovery)
 
-### 03 — Private administration and safer experimentation
+### 03 / Private remote administration
 
-Use **Tailscale and SSH** for authorized remote access, keep public documentation sanitized, and plan to isolate more advanced networking experiments from the household's normal connectivity.
+Use **Tailscale and SSH** to administer authorized systems. Document access boundaries and keep credentials, private addresses, and management endpoints outside the public portfolio.
 
-[Read the access and security approach](docs/security.md)
+[Explore the access approach →](docs/case-studies.md#case-study-3-remote-administration-boundary)
 
-## Technology stack
+## Inside the lab
 
-| Area | Tools and technologies |
+```mermaid
+flowchart LR
+    WAN["Internet"] --> Router["Household router"]
+    Router --> Switch["2.5 GbE switch"]
+    Switch --> Server["MauServer · Unraid<br/>Storage / containers / VMs"]
+    Switch --> Envy["Mau Envy · Linux<br/>Monitoring / control experiments"]
+    Switch --> Clients["LAN clients"]
+    Remote["Authorized remote devices"] -. "Tailscale" .-> Server
+    Remote -. "Tailscale" .-> Envy
+    classDef host fill:#163849,stroke:#63dbc1,color:#f1f7fc
+    class Server,Envy host
+```
+
+| System | Documented configuration | Role |
+| --- | --- | --- |
+| **MauServer** | Core i9-12900K · 32 GB RAM · RTX 3070 Ti · Unraid 7.3.2 | Primary storage, container, and virtualization host |
+| **Mau Envy** | HP Envy · Ryzen 7 2700U · approximately 32 GB RAM · Linux | Monitoring, control deck, and kiosk experiments |
+| **Network & rack** | Household router · 2.5 GbE switch · DeskPi RackMate T2 | Connectivity and physical lab organization |
+
+[Full inventory and design decisions →](docs/architecture.md)
+
+## Engineering notebook
+
+| Start here | What you’ll find |
 | --- | --- |
-| Operating systems | Ubuntu Server, Unraid, Linux CLI, Windows |
-| Containers and services | Docker, Docker Compose, systemd |
-| Monitoring | Prometheus, Grafana |
-| Networking and remote access | TCP/IP, DNS, DHCP, SSH, Tailscale, Cloudflare Tunnel |
-| Data protection | PostgreSQL backup validation, SHA-256 checksums, retention workflows |
-| Source control and documentation | GitHub, Markdown, Mermaid, GitHub Actions documentation checks |
+| [Architecture](docs/architecture.md) | Topology, hardware, system responsibilities, and design constraints |
+| [Operations runbook](docs/operations.md) | Service inspection, incident triage, backup checks, and validation steps |
+| [Engineering case studies](docs/case-studies.md) | Completed work, technical decisions, lessons, and next experiments |
+| [Security approach](docs/security.md) | Private access, public documentation boundaries, and planned improvements |
+| [Roadmap](docs/roadmap.md) | Current capabilities and the next stages of lab development |
+| [Daily update guide](docs/daily-updates.md) | How repository activity is refreshed and how to maintain the automation |
 
-**Scope note:** These are technologies used in the lab or supporting documented work. Kubernetes, Terraform, Ansible, and dedicated VLAN/firewall infrastructure are **learning goals, not claimed completed deployments**. See the [roadmap](docs/roadmap.md).
+## Repository activity
 
-## How I approach engineering
+Automatically refreshed daily from Git history. These are repository changes, not infrastructure checks. Dates use **America/Chicago**.
 
-1. **Establish a baseline:** document what is running, where it runs, and how to check health.
-2. **Make changes deliberately:** inspect current state, consider failure and rollback paths, and validate the result.
-3. **Investigate symptoms with evidence:** check service status, logs, ports, connectivity, and monitoring metrics.
-4. **Automate repeatable work:** prioritize safe execution, retention, and integrity validation.
-5. **Record what I learned:** turn troubleshooting and implementation decisions into reusable documentation.
+<!-- activity:start -->
+**Last refreshed:** 2026-10-31 05:49 CDT
 
-The [operations runbook](docs/operations.md) includes example inspection and verification commands. It is guidance, not a claim that every command has been automated.
+**1 substantive commit in the last 24 hours.**
+
+Latest changes on the main branch (automated activity refreshes excluded):
+
+- **Oct 30, 2026** · docs: present MauLab as an engineering portfolio with runbooks and case studies · [`0d3c6c9`](https://github.com/Maulenos/MauLab/commit/0d3c6c972480dcdec1edf36e827deebc8b248f84)
+- **Oct 27, 2026** · Add files via upload · [`74a351d`](https://github.com/Maulenos/MauLab/commit/74a351d2c1654629e56c0391ba43f51390cab8ee)
+- **Oct 27, 2026** · Initial commit · [`d5a4641`](https://github.com/Maulenos/MauLab/commit/d5a464135cdd9108f9c8eb2474b996f2c11b89ba)
+<!-- activity:end -->
+
+[Browse all commits →](https://github.com/Maulenos/MauLab/commits/main/)
+
+## What’s next
+
+- **Reproducibility:** publish sanitized Compose examples and a small tested service demonstration.
+- **Recovery evidence:** run an isolated restore drill and document the result.
+- **Observability evidence:** add a redacted dashboard and a dated troubleshooting write-up.
+- **Infrastructure as code:** develop bounded Ansible and Terraform experiments.
+
+Kubernetes, dedicated firewall hardware, and VLAN segmentation remain planned learning work. [See the full roadmap →](docs/roadmap.md)
 
 ## About the engineer
 
-I'm **Jose Sosa**, an infrastructure and network operations professional transitioning into DevOps engineering. My experience includes NOC and technical support work at ICTX Wavemedia, Tachus, and WeLink Communications: incident triage, network troubleshooting, service restoration, escalation, documentation, and customer communication.
+My background includes NOC and technical support roles at **ICTX Wavemedia, Tachus, and WeLink Communications**, covering incident triage, troubleshooting, service restoration, escalation, and customer communication. I’m pursuing a **B.S. in Computer Science at Western Governors University**.
 
-I'm pursuing a **B.S. in Computer Science at Western Governors University (in progress)**. MauLab is where I translate operational experience and coursework into hands-on system engineering.
+MauLab is where I translate that operational experience into hands-on infrastructure engineering: establish a baseline, investigate with evidence, validate changes, and turn lessons into reusable documentation.
 
-[LinkedIn](https://www.linkedin.com/in/jose-sosa-783b49ab/) · [GitHub profile](https://github.com/Maulenos)
-
-## Repository guide
-
-| Document | Purpose |
-| --- | --- |
-| [Architecture](docs/architecture.md) | Current topology, system roles, design constraints |
-| [Operations](docs/operations.md) | Troubleshooting workflow and safe service checks |
-| [Case studies](docs/case-studies.md) | Specific engineering work, decisions, and lessons |
-| [Security](docs/security.md) | Remote access, operational boundaries, public-data policy |
-| [Roadmap](docs/roadmap.md) | Clear separation between operating systems and future goals |
-
-### About this repository
-
-This is a **documentation-first portfolio**. It currently does **not** include a complete, ready-to-deploy export of my homelab or all private container configurations. The GitHub Actions workflow checks documentation structure and local links; it does **not** claim to test or deploy my infrastructure. Sanitized configuration examples, additional code, test evidence, and screenshots are future additions.
-
-**Current state:** Active personal lab and evolving portfolio · **Last reviewed:** October 2026
+[Connect on LinkedIn](https://www.linkedin.com/in/jose-sosa-783b49ab/) · [Explore my GitHub](https://github.com/Maulenos)
 
 ---
 
-*Public documentation intentionally excludes credentials, private addresses, access tokens, and sensitive endpoint details.*
+**Documentation-first portfolio.** Infrastructure configurations and backup data remain private. Documentation checks validate repository content; they do not test the running lab. Inventory baseline: **October 2026**.

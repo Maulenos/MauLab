@@ -5,13 +5,17 @@ on:
     paths:
       - "README.md"
       - "docs/**"
-      - "scripts/check_docs.py"
+      - "scripts/**"
+      - "tests/**"
+      - "assets/**"
       - ".github/workflows/documentation.yml"
   pull_request:
     paths:
       - "README.md"
       - "docs/**"
-      - "scripts/check_docs.py"
+      - "scripts/**"
+      - "tests/**"
+      - "assets/**"
       - ".github/workflows/documentation.yml"
 
 permissions:
@@ -25,3 +29,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Verify documentation links and formatting
         run: python3 scripts/check_docs.py
+      - name: Test daily activity generation
+        run: python3 -m unittest discover -s tests -v
